@@ -16,10 +16,30 @@
   vertical-align: bottom;
 }
 
+.player1,
+.player2 {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .player1 {
-  background-color: red;
+  background-image: url("img/peepo-mod1.png");
 }
 
 .player2 {
-  background-color: yellow;
+  background-image: url("img/peepo-mod2.png");
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-300px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animated {
+  animation: slideDown 0.5s forwards;
 }
