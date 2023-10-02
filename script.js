@@ -34,7 +34,12 @@ function placeDisc(col) {
   for (let row = 5; row >= 0; row--) {
     if (!gameArray[row][col]) {
       gameArray[row][col] = currentPlayer;
-      board.rows[row].cells[col].classList.add(`player${currentPlayer}`);
+      const cell = board.rows[row].cells[col];
+      cell.classList.add(`player${currentPlayer}`);
+      cell.classList.add("animated"); // Tilføjelse af animationen her
+      setTimeout(() => {
+        cell.classList.remove("animated"); // Fjern animationen efter den er færdig
+      }, 500);
       turnCount++;
       checkWin(row, col);
       currentPlayer = currentPlayer === 1 ? 2 : 1;
