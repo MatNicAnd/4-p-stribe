@@ -1,1 +1,1 @@
-# 4-p--stribe
+# 4-p-stribe
