@@ -30,16 +30,32 @@ function updateTime() {
   gameTimeEl.textContent = elapsedSeconds;
 }
 
+// Game sound effects
+const dropSound = new Audio("sounds/onHit.mp3");
+const fallingSound = new Audio("sounds/onTravel.mp3");
+dropSound.volume = 0.3; // juster dette efter behov
+fallingSound.volume = 0.3; // juster dette efter behov
+
 function placeDisc(col) {
   for (let row = 5; row >= 0; row--) {
     if (!gameArray[row][col]) {
       gameArray[row][col] = currentPlayer;
       const cell = board.rows[row].cells[col];
       cell.classList.add(`player${currentPlayer}`);
-      cell.classList.add("animated"); // Tilføjelse af animationen her
+      cell.classList.add("animated");
+      cell.style.animationName = `slideDown${row}`;  // Vælg animation baseret på rækkenummer
+
+      // Start "falde" lyden
+      fallingSound.play();
+
+      // Stop "falde" lyden og afspil "drop" lyd, når animationen er færdig
       setTimeout(() => {
-        cell.classList.remove("animated"); // Fjern animationen efter den er færdig
+        fallingSound.pause();
+        fallingSound.currentTime = 0;
+        dropSound.play();
+        cell.classList.remove("animated");
       }, 500);
+
       turnCount++;
       checkWin(row, col);
       currentPlayer = currentPlayer === 1 ? 2 : 1;
