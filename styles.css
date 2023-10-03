@@ -1,3 +1,21 @@
+@font-face {
+  font-family: 'Chewy';
+  src: url('Chewy.ttf') format('opentype');
+}
+
+body {
+  font-family: 'Chewy', sans-serif;
+}
+
+h1>p {
+  font-size: 100px;
+  font-weight: lighter;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: -10px;
+  margin: 0;
+}
+
 .game-container {
   width: 90%;
   /* Øger spilcontainerens bredde */
