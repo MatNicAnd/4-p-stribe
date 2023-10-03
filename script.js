@@ -10,6 +10,7 @@ let gameArray = Array(6)
 let currentPlayer = 1;
 let turnCount = 0;
 let gameStartTimestamp;
+let isGameComplete = false;
 
 let playerCount = parseInt(localStorage.getItem("playerCount"), 10) || 2; // default value
 
@@ -31,14 +32,35 @@ function initGame() {
     }
   }
   gameStartTimestamp = new Date().getTime();
-  setInterval(updateTime, 1000);
+  timerInterval = setInterval(updateTime, 1000);
 }
 
 function updateTime() {
-  const elapsedSeconds = Math.floor(
-    (new Date().getTime() - gameStartTimestamp) / 1000
-  );
-  gameTimeEl.textContent = elapsedSeconds;
+  let totalTime = document.getElementById("finalTime");
+  let totalTime2 = document.getElementById("finalTime2");
+  let totalTime3 = document.getElementById("finalTime3");
+  //this is what is returned when the game is completed
+  let elapsedSeconds = 0;
+
+  if(isGameComplete != true)
+  {
+    //elapsed seconds is updated here
+    elapsedSeconds = Math.floor(
+      (new Date().getTime() - gameStartTimestamp) / 1000
+    );
+    //this is the correct time
+    gameTimeEl.textContent = elapsedSeconds;
+  }
+
+  //elapsedSeconds is back to 0
+  totalTime.textContent = `Spillet varede ${gameTimeEl.textContent} sekunder`;
+  totalTime2.textContent = `Spillet varede ${gameTimeEl.textContent} sekunder`;
+  totalTime3.textContent = `Spillet varede ${gameTimeEl.textContent} sekunder`;
+
+  if(isGameComplete == true)
+  {
+    clearInterval(timerInterval);
+  }
 }
 
 // Game sound effects
@@ -110,6 +132,9 @@ function checkWin(row, col) {
           ) {
               count++;
           }
+          else {
+            break;
+          }
       }
       // Tjek i negativ retning (baglæns i retningen).
       for(let i = 1; i < 4; i++) {
@@ -124,15 +149,20 @@ function checkWin(row, col) {
           ) {
           count++;
           }
+          else {
+            break;
+          }
       }
       // Hvis vi har fundet fire brikker på stribe i en retning, har vi en vinder.
       if(count >= 4) {
           //hver spiller får en unik predefineret victory screen og checkes der hvilken spiller der vandt
           //og så åbnes der en bestemt modal der ønsker spilleren tilykke med sejren
           if(playerToCheck === 1){
+              isGameComplete = true;
               player1WinsModal();
           }
           else if(playerToCheck === 2){
+              isGameComplete = true;
               player2WinsModal();
           }
       }
@@ -141,6 +171,7 @@ function checkWin(row, col) {
   //ville ændre sig ift hvor mange spillere der spiller med) så hvis uafgjort skærmen
   if(turnCount === 42)
   {
+      isGameComplete = true;
       drawModal();
   }
 }
