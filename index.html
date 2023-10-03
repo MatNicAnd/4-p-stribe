@@ -18,6 +18,25 @@
             <p>Antal ture: <span id="turnCount">0</span></p>
         </div>
     </div>
+        <!--Here is the modals that will open once the game finishes with our without a winner-->
+        <div id="player1WinsModal" class="winner1Modal">
+            <div class="winner1-modal-content">
+                <span class="closeModal1">&times;</span>
+                <p>Spiller 1 vinder. Stort tillykke med sejren.</p>
+            </div>
+        </div>
+        <div id="player2WinsModal" class="winner2Modal">
+            <div class="winner2-modal-content">
+                <span class="closeModal2">&times;</span>
+                <p>Spiller 2 vinder. Stort tillykke med sejren.</p>
+            </div>
+        </div>
+        <div id="drawModal" class="modal">
+            <div class="modal-content">
+                <span class="closeModal">&times;</span>
+                <p>Spillet endte uden vinder</p>
+            </div>
+        </div>
     <script src="script.js"></script>
 </body>
 </html>
