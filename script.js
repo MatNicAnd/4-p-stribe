@@ -153,14 +153,19 @@ function drawModal() {
 
   function closeModal() {
       drawModal.style.display = "none";
+      window.location.href = "start.html";
   }
 
   closeDrawModalButton.addEventListener("click", closeModal);
   window.addEventListener("click", function (event) {
-  if(event.target === modal) {
+  if(event.target === drawModal) {
       closeModal();
   }
   });
+
+  //Use this to close the modal via a button and navigate to the title screen
+  const closeButton = document.querySelector(".closeModalButton3");
+  closeButton.onclick = closeModal;
 }
 //en modal til når spiller 1 vinder
 function player1WinsModal() {
@@ -169,16 +174,21 @@ function player1WinsModal() {
 
   player1WinsModal.style.display = "block";
 
-  function closeModal() {
+  function closeModal1() {
+      //invoke this function when clicking a button in html
       player1WinsModal.style.display = "none";
+      window.location.href = "start.html";
   }
 
-  closePlayer1WinsModalButton.addEventListener("click", closeModal);
+  closePlayer1WinsModalButton.addEventListener("click", closeModal1);
   window.addEventListener("click", function (event) {
-  if(event.target === modal) {
-      closeModal();
+  if(event.target === player1WinsModal) {
+      closeModal1();
   }
   });
+
+  const closeButton = document.querySelector(".closeModalButton");
+    closeButton.onclick = closeModal1;
 }
 //en modal til når spiller 2 vinder
 function player2WinsModal() {
@@ -187,14 +197,18 @@ function player2WinsModal() {
 
   player2WinsModal.style.display = "block";
 
-  function closeModal() {
+  function closeModal2() {
       player2WinsModal.style.display = "none";
+      window.location.href = "start.html";
   }
 
-  closePlayer2WinsModal.addEventListener("click", closeModal);
+  closePlayer2WinsModal.addEventListener("click", closeModal2);
   window.addEventListener("click", function (event) {
-  if(event.target === modal) {
-      closeModal();
+  if(event.target === player2WinsModal) {
+      closeModal2();
   }
   });
+
+  const closeButton = document.querySelector(".closeModalButton2");
+  closeButton.onclick = closeModal2;
 }
