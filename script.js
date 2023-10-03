@@ -11,10 +11,21 @@ let currentPlayer = 1;
 let turnCount = 0;
 let gameStartTimestamp;
 
+let playerCount = parseInt(localStorage.getItem("playerCount"), 10) || 2; // default value
+
 function initGame() {
-  for (let i = 0; i < 6; i++) {
+  const rows =
+    playerCount === 3 ? Math.ceil(6 * 1.5) : playerCount === 4 ? 6 * 2 : 6;
+  const cols =
+    playerCount === 3 ? Math.ceil(7 * 1.5) : playerCount === 4 ? 7 * 2 : 7;
+
+  gameArray = Array(rows)
+    .fill()
+    .map(() => Array(cols).fill(null));
+
+  for (let i = 0; i < rows; i++) {
     let row = board.insertRow();
-    for (let j = 0; j < 7; j++) {
+    for (let j = 0; j < cols; j++) {
       let cell = row.insertCell();
       cell.addEventListener("click", () => placeDisc(j));
     }
@@ -37,13 +48,14 @@ dropSound.volume = 0.3; // juster dette efter behov
 fallingSound.volume = 0.3; // juster dette efter behov
 
 function placeDisc(col) {
-  for (let row = 5; row >= 0; row--) {
+  const rows = gameArray.length;
+  for (let row = rows - 1; row >= 0; row--) {
     if (!gameArray[row][col]) {
       gameArray[row][col] = currentPlayer;
       const cell = board.rows[row].cells[col];
       cell.classList.add(`player${currentPlayer}`);
       cell.classList.add("animated");
-      cell.style.animationName = `slideDown${row}`;  // Vælg animation baseret på rækkenummer
+      cell.style.animationName = `slideDown${row}`; // Vælg animation baseret på rækkenummer
 
       // Start "falde" lyden
       fallingSound.play();
@@ -58,7 +70,7 @@ function placeDisc(col) {
 
       turnCount++;
       checkWin(row, col);
-      currentPlayer = currentPlayer === 1 ? 2 : 1;
+      currentPlayer = (currentPlayer % playerCount) + 1;
       currentPlayerEl.textContent = currentPlayer;
       turnCountEl.textContent = turnCount;
       return;
