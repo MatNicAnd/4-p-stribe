@@ -33,6 +33,8 @@ function initGame() {
   }
   gameStartTimestamp = new Date().getTime();
   timerInterval = setInterval(updateTime, 1000);
+
+  console.log(gameArray);
 }
 
 function updateTime() {
@@ -133,9 +135,9 @@ function checkWin(row, col) {
           // Vi tjekker, om den nye position er inden for brættet og om brikken er den samme som den aktuelle spillers.
           if(
             newRow >= 0 &&
-            newRow < 6 &&
+            newRow < gameArray.length &&
             newCol >= 0 &&
-            newCol < 7 &&
+            newCol < gameArray[0].length &&
             gameArray[newRow][newCol] === playerToCheck
           ) {
               count++;
@@ -150,9 +152,9 @@ function checkWin(row, col) {
           const newCol = col - dir.col * i;
           if (
             newRow >= 0 &&
-            newRow < 6 &&
+            newRow < gameArray.length &&
             newCol >= 0 &&
-            newCol < 7 &&
+            newCol < gameArray[0].length &&
             gameArray[newRow][newCol] === playerToCheck
           ) {
           count++;
@@ -174,6 +176,16 @@ function checkWin(row, col) {
               //når spiller 2 har 4 på stribe sættes isGameComplete til true
               isGameComplete = true;
               player2WinsModal();
+          }
+          else if(playerToCheck === 3){
+              //når spiller 2 har 4 på stribe sættes isGameComplete til true
+              isGameComplete = true;
+              player3WinsModal();
+          }
+          else if(playerToCheck === 4){
+              //når spiller 2 har 4 på stribe sættes isGameComplete til true
+              isGameComplete = true;
+              player4WinsModal();
           }
       }
   }
