@@ -39,6 +39,8 @@ function updateTime() {
   let totalTime = document.getElementById("finalTime");
   let totalTime2 = document.getElementById("finalTime2");
   let totalTime3 = document.getElementById("finalTime3");
+  let totalTime4 = document.getElementById("finalTime4");
+  let totalTime5 = document.getElementById("finalTime5");
   //this is what is returned when the game is completed
   let elapsedSeconds = 0;
 
@@ -56,6 +58,8 @@ function updateTime() {
   totalTime.textContent = `Spillet varede ${gameTimeEl.textContent} sekunder`;
   totalTime2.textContent = `Spillet varede ${gameTimeEl.textContent} sekunder`;
   totalTime3.textContent = `Spillet varede ${gameTimeEl.textContent} sekunder`;
+  totalTime4.textContent = `Spillet varede ${gameTimeEl.textContent} sekunder`;
+  totalTime5.textContent = `Spillet varede ${gameTimeEl.textContent} sekunder`;
 
   if(isGameComplete == true)
   {
@@ -242,4 +246,48 @@ function player2WinsModal() {
 
   const closeButton = document.querySelector(".closeModalButton2");
   closeButton.onclick = closeModal2;
+}
+
+function player3WinsModal() {
+  const player3WinsModal = document.getElementById("player3WinsModal");
+  const closePlayer3WinsModal = document.querySelector(".closeModal3");
+
+  player3WinsModal.style.display = "block";
+
+  function closeModal3() {
+      player3WinsModal.style.display = "none";
+      window.location.href = "start.html";
+  }
+
+  closePlayer3WinsModal.addEventListener("click", closeModal3);
+  window.addEventListener("click", function (event) {
+  if(event.target === player3WinsModal) {
+      closeModal3();
+  }
+  });
+
+  const closeButton = document.querySelector(".closeModalButton4");
+  closeButton.onclick = closeModal3;
+}
+
+function player4WinsModal() {
+  const player4WinsModal = document.getElementById("player4WinsModal");
+  const closePlayer4WinsModal = document.querySelector(".closeModal4");
+
+  player4WinsModal.style.display = "block";
+
+  function closeModal4() {
+      player4WinsModal.style.display = "none";
+      window.location.href = "start.html";
+  }
+
+  closePlayer4WinsModal.addEventListener("click", closeModal4);
+  window.addEventListener("click", function (event) {
+  if(event.target === player4WinsModal) {
+      closeModal4();
+  }
+  });
+
+  const closeButton = document.querySelector(".closeModalButton5");
+  closeButton.onclick = closeModal4;
 }
