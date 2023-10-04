@@ -33,8 +33,6 @@ function initGame() {
   }
   gameStartTimestamp = new Date().getTime();
   timerInterval = setInterval(updateTime, 1000);
-
-  console.log(gameArray);
 }
 
 function updateTime() {
@@ -59,12 +57,12 @@ function updateTime() {
     gameTimeEl.textContent = elapsedSeconds;
   }
 
-  //print den samlede tid spillet tog i sekunder
-  totalTime.textContent = `Spillet varede ${gameTimeEl.textContent} sekunder`;
-  totalTime2.textContent = `Spillet varede ${gameTimeEl.textContent} sekunder`;
-  totalTime3.textContent = `Spillet varede ${gameTimeEl.textContent} sekunder`;
-  totalTime4.textContent = `Spillet varede ${gameTimeEl.textContent} sekunder`;
-  totalTime5.textContent = `Spillet varede ${gameTimeEl.textContent} sekunder`;
+  //print den samlede tid spillet tog i sekunder samt antal ture brugt
+  totalTime.textContent = `Spillet varede ${gameTimeEl.textContent} sekunder og spillet sluttede efter ${turnCountEl.textContent} runde`;
+  totalTime2.textContent = `Spillet varede ${gameTimeEl.textContent} sekunder og spillet sluttede efter ${turnCountEl.textContent} runde`;
+  totalTime3.textContent = `Spillet varede ${gameTimeEl.textContent} sekunder og spillet sluttede efter ${turnCountEl.textContent} runde`;
+  totalTime4.textContent = `Spillet varede ${gameTimeEl.textContent} sekunder og spillet sluttede efter ${turnCountEl.textContent} runde`;
+  totalTime5.textContent = `Spillet varede ${gameTimeEl.textContent} sekunder og spillet sluttede efter ${turnCountEl.textContent} runde`;
 
   //stop timer når spillet er afgjort (når en vinder eller spillet bliver uafgjort)
   if(isGameComplete == true)
@@ -78,6 +76,7 @@ const dropSound = new Audio("sounds/onHit.mp3");
 const fallingSound = new Audio("sounds/onTravel.mp3");
 dropSound.volume = 0.3; // juster dette efter behov
 fallingSound.volume = 0.3; // juster dette efter behov
+let playersCompletedTurn = 0; //hold styr på hvilke spillere der har udført deres tur
 
 function placeDisc(col) {
   const rows = gameArray.length;
@@ -100,10 +99,19 @@ function placeDisc(col) {
         cell.classList.remove("animated");
       }, 500);
 
-      turnCount++;
+      playersCompletedTurn++;
+
+      if (playersCompletedTurn === playerCount) {
+        //når alle spillere har haft deres tur så går turnCount op
+        turnCount++;
+
+        //nulstil counteren når alle spillere har gennemført deres tur
+        playersCompletedTurn = 0;
+      }
       checkWin(row, col);
       currentPlayer = (currentPlayer % playerCount) + 1;
       currentPlayerEl.textContent = currentPlayer;
+      //print antal ture på skærmen
       turnCountEl.textContent = turnCount;
       return;
     }
@@ -189,9 +197,8 @@ function checkWin(row, col) {
           }
       }
   }
-  //hvis der går 42 runder (note skal ændres afhængigt af hvor mange spillere der er da board størrelsen
-  //ville ændre sig ift hvor mange spillere der spiller med) så hvis uafgjort skærmen
-  if(turnCount === 42)
+  //hvis pladen bliver helt fyldt med brikker så ender spillet uafgjort
+  if(turnCount === gameArray.length * gameArray[0].length)
   {
       //IsGameComplete sættes til true hvis spillet ender uafgjort
       isGameComplete = true;
