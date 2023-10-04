@@ -36,14 +36,17 @@ function initGame() {
 }
 
 function updateTime() {
+  //få fat i et felt på modal hvor man gerne ville skrive ud hvor lang tid spillet tog
+  //der er 5 mulige scenariere for hvilken modal der udløses så derfor hentes der 5 felter
   let totalTime = document.getElementById("finalTime");
   let totalTime2 = document.getElementById("finalTime2");
   let totalTime3 = document.getElementById("finalTime3");
   let totalTime4 = document.getElementById("finalTime4");
   let totalTime5 = document.getElementById("finalTime5");
-  //this is what is returned when the game is completed
+  //initialisere tiden til 0 sekunder brugt når spillet starter
   let elapsedSeconds = 0;
 
+  //tæl i sekunder mens spillet erigang
   if(isGameComplete != true)
   {
     //elapsed seconds is updated here
@@ -54,13 +57,14 @@ function updateTime() {
     gameTimeEl.textContent = elapsedSeconds;
   }
 
-  //elapsedSeconds is back to 0
+  //print den samlede tid spillet tog i sekunder
   totalTime.textContent = `Spillet varede ${gameTimeEl.textContent} sekunder`;
   totalTime2.textContent = `Spillet varede ${gameTimeEl.textContent} sekunder`;
   totalTime3.textContent = `Spillet varede ${gameTimeEl.textContent} sekunder`;
   totalTime4.textContent = `Spillet varede ${gameTimeEl.textContent} sekunder`;
   totalTime5.textContent = `Spillet varede ${gameTimeEl.textContent} sekunder`;
 
+  //stop timer når spillet er afgjort (når en vinder eller spillet bliver uafgjort)
   if(isGameComplete == true)
   {
     clearInterval(timerInterval);
@@ -162,10 +166,12 @@ function checkWin(row, col) {
           //hver spiller får en unik predefineret victory screen og checkes der hvilken spiller der vandt
           //og så åbnes der en bestemt modal der ønsker spilleren tilykke med sejren
           if(playerToCheck === 1){
+              //når spiller 1 har 4 på stribe sættes isGameComplete til true
               isGameComplete = true;
               player1WinsModal();
           }
           else if(playerToCheck === 2){
+              //når spiller 2 har 4 på stribe sættes isGameComplete til true
               isGameComplete = true;
               player2WinsModal();
           }
@@ -175,30 +181,36 @@ function checkWin(row, col) {
   //ville ændre sig ift hvor mange spillere der spiller med) så hvis uafgjort skærmen
   if(turnCount === 42)
   {
+      //IsGameComplete sættes til true hvis spillet ender uafgjort
       isGameComplete = true;
       drawModal();
   }
 }
 //her laves en modal som vises hvis spillet bliver uafgjort
 function drawModal() {
+  //hent modal samt dens lukke knap. Modallen er skjult før denne function kaldes
   const drawModal = document.getElementById("drawModal");
   const closeDrawModalButton = document.querySelector(".closeModal");
-
+  //fremvis modal
   drawModal.style.display = "block";
 
   function closeModal() {
+      //modal sættes til at være skjult når brugeren trykker på nyt spil knappen eller luk knappen
       drawModal.style.display = "none";
       window.location.href = "start.html";
   }
 
+  //event listener på siden der lytter efter et click event
   closeDrawModalButton.addEventListener("click", closeModal);
   window.addEventListener("click", function (event) {
+  //hvis det var denne bestemte modal der triggered et click event så kald closeModal()
   if(event.target === drawModal) {
+      //lukker modallen kaldet drawModal
       closeModal();
   }
   });
 
-  //Use this to close the modal via a button and navigate to the title screen
+  //En knap der lukker modallen og navigerer spillerne tilbage til hovedmenuen
   const closeButton = document.querySelector(".closeModalButton3");
   closeButton.onclick = closeModal;
 }
@@ -247,7 +259,7 @@ function player2WinsModal() {
   const closeButton = document.querySelector(".closeModalButton2");
   closeButton.onclick = closeModal2;
 }
-
+//en modal til når spiller 3 vinder
 function player3WinsModal() {
   const player3WinsModal = document.getElementById("player3WinsModal");
   const closePlayer3WinsModal = document.querySelector(".closeModal3");
@@ -269,7 +281,7 @@ function player3WinsModal() {
   const closeButton = document.querySelector(".closeModalButton4");
   closeButton.onclick = closeModal3;
 }
-
+//en modal til når spiller 4 vinder
 function player4WinsModal() {
   const player4WinsModal = document.getElementById("player4WinsModal");
   const closePlayer4WinsModal = document.querySelector(".closeModal4");
