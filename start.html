@@ -37,7 +37,16 @@
       <option value="4">4 spillere</option>
     </select>
     <button class="start-button" onclick="startGame()">Start spil</button>
+  <div id="gameStatsModal" class="gameStatsModal">
+    <div class="gameStats-modal-content">
+        <span class="gameStatsModal">&times;</span>
+        <ul id="gameHistoryList">stats her</ul>
+        <button class="closeGameStatsModal" onclick="closeStatsModal()">Tilbage</button>
+    </div>
   </div>
+  <button id="openGameStatsModal" onclick="openGameStatsModal()" class="start-button">Historik</button>
+  </div>
+  <script src="script.js"></script>
   <script>
     function startGame() {
       const playerCount = document.getElementById("playerCount").value;
