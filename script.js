@@ -201,7 +201,8 @@ function checkWin(row, col) {
 
   const gameStats = {
     gameTime: gameTimeEl.textContent,
-    turnCount: turnCountEl.textContent
+    turnCount: turnCountEl.textContent,
+    winner: undefined
   }
   
   // Vi gemmer den aktuelle spiller, som vi vil tjekke for en vinder.
@@ -253,26 +254,30 @@ function checkWin(row, col) {
           if(playerToCheck === 1){
               //når spiller 1 har 4 på stribe sættes isGameComplete til true
               isGameComplete = true;
-              storeGameStats(gameStats);
               player1WinsModal();
+              gameStats.winner = "Spiller 1";
+              storeGameStats(gameStats);
           }
           else if(playerToCheck === 2){
               //når spiller 2 har 4 på stribe sættes isGameComplete til true
               isGameComplete = true;
-              storeGameStats(gameStats);
               player2WinsModal();
+              gameStats.winner = "Spiller 2";
+              storeGameStats(gameStats);
           }
           else if(playerToCheck === 3){
               //når spiller 2 har 4 på stribe sættes isGameComplete til true
               isGameComplete = true;
-              storeGameStats(gameStats);
               player3WinsModal();
+              gameStats.winner = "Spiller 3";
+              storeGameStats(gameStats);
           }
           else if(playerToCheck === 4){
               //når spiller 2 har 4 på stribe sættes isGameComplete til true
               isGameComplete = true;
-              storeGameStats(gameStats);
               player4WinsModal();
+              gameStats.winner = "Spiller 4";
+              storeGameStats(gameStats);
           }
       }
   }
@@ -430,10 +435,10 @@ function displayGameHistory() {
   // vi skal bruge et li for hver historiks spil
   gameHistory.forEach((gameStats, index) => {
     const listItem = document.createElement('li');
-    listItem.textContent = `Spil ${index + 1}: Varighed ${gameStats.gameTime} sekunder. Antal runder: ${gameStats.turnCount}`;
+    listItem.textContent = `Spil ${index + 1}: Varighed ${gameStats.gameTime} sekunder. Antal runder: ${gameStats.turnCount} Vinder: ${gameStats.winner}`;
     history.appendChild(listItem);
   });
-  }
+}
 
 document.addEventListener('DOMContentLoaded', function(){
 //function til at kalde på game history
