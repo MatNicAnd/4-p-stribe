@@ -4,6 +4,8 @@ const winnerEl = document.getElementById("winner");
 const gameTimeEl = document.getElementById("gameTime");
 const turnCountEl = document.getElementById("turnCount");
 
+const gameStatsModal = document.getElementById("gameStatsModal");
+
 let gameArray = Array(6)
   .fill()
   .map(() => Array(7).fill(null));
@@ -129,6 +131,12 @@ function checkWin(row, col) {
       { row: 1, col: 1 }, // diagonalt (nedad mod højre)
       { row: 1, col: -1 } // diagonalt (nedad mod venstre)
   ];
+
+  const gameStats = {
+    gameTime: gameTimeEl.textContent,
+    turnCount: turnCountEl.textContent
+  }
+  
   // Vi gemmer den aktuelle spiller, som vi vil tjekke for en vinder.
   const playerToCheck = gameArray[row][col];
   // Nu går vi igennem hver retning for at se, om der er fire på stribe.
@@ -178,30 +186,36 @@ function checkWin(row, col) {
           if(playerToCheck === 1){
               //når spiller 1 har 4 på stribe sættes isGameComplete til true
               isGameComplete = true;
+              storeGameStats(gameStats);
               player1WinsModal();
           }
           else if(playerToCheck === 2){
               //når spiller 2 har 4 på stribe sættes isGameComplete til true
               isGameComplete = true;
+              storeGameStats(gameStats);
               player2WinsModal();
           }
           else if(playerToCheck === 3){
               //når spiller 2 har 4 på stribe sættes isGameComplete til true
               isGameComplete = true;
+              storeGameStats(gameStats);
               player3WinsModal();
           }
           else if(playerToCheck === 4){
               //når spiller 2 har 4 på stribe sættes isGameComplete til true
               isGameComplete = true;
+              storeGameStats(gameStats);
               player4WinsModal();
           }
       }
+      console.log(gameStats);
   }
   //hvis pladen bliver helt fyldt med brikker så ender spillet uafgjort
   if(turnCount === gameArray.length * gameArray[0].length)
   {
       //IsGameComplete sættes til true hvis spillet ender uafgjort
       isGameComplete = true;
+      storeGameStats(gameStats);
       drawModal();
   }
 }
@@ -322,3 +336,64 @@ function player4WinsModal() {
   const closeButton = document.querySelector(".closeModalButton5");
   closeButton.onclick = closeModal4;
 }
+//store de seneste 3 spil
+function storeGameStats(gameStats) {
+  // Retrieve existing game history from local storage
+  let gameHistory = JSON.parse(localStorage.getItem('gameHistory')) || [];
+
+  // Add the new game stats to the beginning of the array (most recent game first)
+  gameHistory.unshift(gameStats);
+
+  // Ensure that only the three most recent games are stored
+  if (gameHistory.length > 3) {
+    gameHistory.pop(); // Remove the oldest game stats
+  }
+
+  // Store the updated game history back in local storage
+  localStorage.setItem('gameHistory', JSON.stringify(gameHistory));
+}
+
+function displayGameHistory() {
+  //vi henter fra local storage
+  const gameHistory = JSON.parse(localStorage.getItem('gameHistory')) || [];
+  //her vil historik displayes
+  const history = document.getElementById('gameHistoryList');
+
+  history.innerHTML = '';
+
+  // vi skal bruge et li for hver historiks spil
+  gameHistory.forEach((gameStats, index) => {
+    const listItem = document.createElement('li');
+    listItem.textContent = `Spil ${index + 1}: Varighed ${gameStats.gameTime} sekunder. Antal runder: ${gameStats.turnCount}`;
+    history.appendChild(listItem);
+  });
+  }
+
+document.addEventListener('DOMContentLoaded', function(){
+//function til at kalde på game history
+  displayGameHistory();
+})
+
+function openGameStatsModal() {
+  gameStatsModal.style.display = "block";
+  // invoke displayGameHistory for at opdatere historik
+  displayGameHistory();
+}
+
+// Get the closeGameStatsModal and openGameStats elements
+const closeGameStatsModal = document.querySelector(".closeGameStatsModal");
+const openGameStats = document.getElementById("openGameStatsModal");
+
+function closeStatsModal() {
+  gameStatsModal.style.display = "none";
+  window.location.href = "start.html";
+}
+
+// Add event listeners directly to the elements
+openGameStats.addEventListener("click", openGameStatsModal);
+closeGameStatsModal.addEventListener("click", closeStatsModal);
+window.addEventListener("click", function (event) {
+  if (event.target === gameStatsModal) {
+    closeStatsModal();
+  }
+});
