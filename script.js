@@ -37,7 +37,7 @@ function initGame() {
   timerInterval = setInterval(updateTime, 1000);
 }
 
-function updateStarfishGif() {
+/* function updateStarfishGif() {
   const starfishEl = document.querySelector(
     'img[src*="Starfish_Default_web.gif"]'
   );
@@ -64,6 +64,42 @@ function updateStarfishGif() {
     setTimeout(() => {
       starfishEl.src = "img/starfish_animations/Starfish_Default_web.gif";
     }, GIF_DURATION);
+  }
+} */
+
+function updateStarfishGif() {
+  const starfishEl = document.querySelector(
+    'img[src*="Starfish_Default_web.gif"]'
+  );
+  if (!starfishEl) return;
+
+  let newGifSrc = "";
+  switch (currentPlayer) {
+    case 1:
+      newGifSrc = "img/starfish_animations/Starfish_Player_1_web.gif";
+      break;
+    case 2:
+      newGifSrc = "img/starfish_animations/Starfish_Player_2_web.gif";
+      break;
+    case 3:
+      newGifSrc = "img/starfish_animations/Starfish_Player_3_web.gif";
+      break;
+    case 4:
+      newGifSrc = "img/starfish_animations/Starfish_Player_4_web.gif";
+      break;
+  }
+
+  if (newGifSrc) {
+    // Introduce a delay of 1.5 seconds (1500 milliseconds) before updating to the new GIF
+    setTimeout(() => {
+      starfishEl.src = newGifSrc;
+
+      // Show the new GIF for 2.6 seconds (2600 milliseconds)
+      setTimeout(() => {
+        // Reset to default GIF after 2.6 seconds
+        starfishEl.src = "img/starfish_animations/Starfish_Default_web.gif";
+      }, 2600);
+    }, 1000);
   }
 }
 
