@@ -4,12 +4,21 @@
 }
 
 body {
-  font-family: 'Chewy', sans-serif;
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+p {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 35px;
+  font-weight: lighter;
 }
 
 h1>p {
+  font-family: 'Chewy', sans-serif;
   font-size: 100px;
-  font-weight: lighter;
   text-align: center;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   letter-spacing: -10px;
@@ -21,6 +30,21 @@ h1>p {
   /* Øger spilcontainerens bredde */
   margin: 2rem auto;
   text-align: center;
+}
+
+#gameInfo.start-container {
+  text-align: left;
+  padding-bottom: 0;
+}
+
+#playerCount {
+  font-size: 20px;
+  height: 50px;
+  width: 130px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #FFD233;
+  border: none;
 }
 
 #gameBoard {
@@ -40,28 +64,29 @@ h1>p {
 }
 
 .start-container {
-  width: 80%;
-  margin: 4rem auto;
   text-align: center;
-  padding: 2rem;
-  border: 1px solid #ddd;
+  padding: 0 50px 40px 50px;
   border-radius: 10px;
-  background-color: #f9f9f9;
+  background-color: rgba(255, 255, 255, 0.5);
+  /* White with 0.5 transparency */
 }
 
 .start-button {
+  font-size: 20px;
+  width: 130px;
+  height: 50px;
   display: inline-block;
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: #fff;
+  border-radius: 10px;
+  background-color: #FFD233;
   text-decoration: none;
   cursor: pointer;
+  margin-left: 20px;
 }
 
 .start-button:hover {
-  background-color: #0056b3;
+  background-color: #8ED93E;
 }
 
 .player1,
@@ -165,6 +190,11 @@ h1>p {
   animation: slideDown 0.5s ease-out forwards;
 }
 
+#winnerStarfish {
+  position: relative;
+  top: -100px;
+}
+
 .modal {
   display: none;
   position: fixed;
@@ -211,7 +241,7 @@ h1>p {
   padding: 20px;
   border-radius: 10px;
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 500px;

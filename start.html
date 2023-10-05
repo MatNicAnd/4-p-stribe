@@ -1,32 +1,50 @@
 <!DOCTYPE html>
 <html lang="da">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Velkommen til 4 på stribe</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <video autoplay muted loop>
-      <source src="Graphics/BackgroundVideo.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <div class="start-container">
-      <h1>4 på stribe</h1>
-      <p>Vælg antal spillere:</p>
-      <select id="playerCount">
-        <option value="2">2 spillere</option>
-        <option value="3">3 spillere</option>
-        <option value="4">4 spillere</option>
-      </select>
-      <button class="start-button" onclick="startGame()">Start spil</button>
-    </div>
-    <script>
-      function startGame() {
-        const playerCount = document.getElementById("playerCount").value;
-        localStorage.setItem("playerCount", playerCount);
-        window.location.href = "index.html";
-      }
-    </script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welkommen til Aqua Quatro</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <video autoplay muted loop>
+    <source src="Graphics/BackgroundVideo.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="start-container">
+    <h1>
+      <p>
+        <span style="color: #FFD233;">A</span>
+        <span style="color: #8ED93E;">q</span>
+        <span style="color: #F78AE9;">u</span>
+        <span style="color: #FFA849;">a</span>
+        &nbsp;
+        <span style="color: #DE5F6F;">Q</span>
+        <span style="color: #F78AE9;">u</span>
+        <span style="color: #FFD233;">a</span>
+        <span style="color: #F78AE9;">t</span>
+        <span style="color: #F98B76;">t</span>
+        <span style="color: #DE5F6F;">r</span>
+        <span style="color: #8ED93E;">o</span>
+      </p>
+    </h1>
+    <p>Vælg antallet af spillere:</p>
+    <select id="playerCount">
+      <option value="2">2 spillere</option>
+      <option value="3">3 spillere</option>
+      <option value="4">4 spillere</option>
+    </select>
+    <button class="start-button" onclick="startGame()">Start spil</button>
+  </div>
+  <script>
+    function startGame() {
+      const playerCount = document.getElementById("playerCount").value;
+      localStorage.setItem("playerCount", playerCount);
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+
 </html>
