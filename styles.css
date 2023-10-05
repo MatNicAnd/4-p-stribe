@@ -16,7 +16,7 @@ p {
   font-weight: lighter;
 }
 
-h1 > p {
+h1>p {
   font-family: "Chewy", sans-serif;
   font-size: 100px;
   text-align: center;
@@ -132,6 +132,7 @@ h1 > p {
 }
 
 @keyframes slideDown0 {
+
   /* 0 brikker i kolonnen */
   0% {
     transform: translateY(-100px);
@@ -143,6 +144,7 @@ h1 > p {
 }
 
 @keyframes slideDown1 {
+
   /* 1 brik i kolonnen */
   0% {
     transform: translateY(-200px);
@@ -154,6 +156,7 @@ h1 > p {
 }
 
 @keyframes slideDown2 {
+
   /* 2 brik i kolonnen */
   0% {
     transform: translateY(-300px);
@@ -165,6 +168,7 @@ h1 > p {
 }
 
 @keyframes slideDown3 {
+
   /* 3 brik i kolonnen */
   0% {
     transform: translateY(-400px);
@@ -176,6 +180,7 @@ h1 > p {
 }
 
 @keyframes slideDown4 {
+
   /* 4 brik i kolonnen */
   0% {
     transform: translateY(-500px);
@@ -187,6 +192,7 @@ h1 > p {
 }
 
 @keyframes slideDown5 {
+
   /* 5 brik i kolonnen */
   0% {
     transform: translateY(-600px);
@@ -205,13 +211,14 @@ h1 > p {
   position: relative;
   top: -100px;
   z-index: -10;
-  top: 0px;
+  top: -100px;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -302,7 +309,7 @@ h1 > p {
   padding: 20px;
   border-radius: 10px;
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 500px;
@@ -343,7 +350,7 @@ video {
   padding: 20px;
   border-radius: 10px;
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 500px;
@@ -370,11 +377,11 @@ video {
 }
 
 .winner4-modal-content {
-  background-color: #4400ff;
+  background-color: #338BD3;
   padding: 20px;
   border-radius: 10px;
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 500px;
@@ -390,7 +397,7 @@ video {
   cursor: pointer;
 }
 
-.closeModalButton {
+.ModalButtonClose {
   font-size: 20px;
   width: 130px;
   height: 50px;
@@ -406,6 +413,6 @@ video {
   z-index: 10;
 }
 
-.closeModalButton:hover {
+.ModalButtonClose:hover {
   background-color: #8ED93E;
 }
