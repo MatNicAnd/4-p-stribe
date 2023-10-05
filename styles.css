@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'Chewy';
-  src: url('Chewy.ttf') format('opentype');
+  font-family: "Chewy";
+  src: url("Chewy.ttf") format("opentype");
 }
 
 body {
@@ -16,8 +16,8 @@ p {
   font-weight: lighter;
 }
 
-h1>p {
-  font-family: 'Chewy', sans-serif;
+h1 > p {
+  font-family: "Chewy", sans-serif;
   font-size: 100px;
   text-align: center;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -43,7 +43,7 @@ h1>p {
   width: 130px;
   padding: 10px;
   border-radius: 10px;
-  background-color: #FFD233;
+  background-color: #ffd233;
   border: none;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -95,7 +95,7 @@ h1>p {
   padding: 10px 20px;
   border: none;
   border-radius: 10px;
-  background-color: #FFD233;
+  background-color: #ffd233;
   text-decoration: none;
   cursor: pointer;
   margin-left: 20px;
@@ -103,7 +103,7 @@ h1>p {
 }
 
 .start-button:hover {
-  background-color: #8ED93E;
+  background-color: #8ed93e;
 }
 
 .player1,
@@ -116,23 +116,22 @@ h1>p {
 }
 
 .player1 {
-  background-image: url("img/peepo-mod1.png");
+  background-image: url("img/sprites/Fish_1.png");
 }
 
 .player2 {
-  background-image: url("img/peepo-mod2.png");
+  background-image: url("img/sprites/Fish_2.png");
 }
 
 .player3 {
-  background-image: url("img/peepo-mod3.png");
+  background-image: url("img/sprites/Fish_3.png");
 }
 
 .player4 {
-  background-image: url("img/peepo-mod4.png");
+  background-image: url("img/sprites/Fish_4.png");
 }
 
 @keyframes slideDown0 {
-
   /* 0 brikker i kolonnen */
   0% {
     transform: translateY(-100px);
@@ -144,7 +143,6 @@ h1>p {
 }
 
 @keyframes slideDown1 {
-
   /* 1 brik i kolonnen */
   0% {
     transform: translateY(-200px);
@@ -156,7 +154,6 @@ h1>p {
 }
 
 @keyframes slideDown2 {
-
   /* 2 brik i kolonnen */
   0% {
     transform: translateY(-300px);
@@ -168,7 +165,6 @@ h1>p {
 }
 
 @keyframes slideDown3 {
-
   /* 3 brik i kolonnen */
   0% {
     transform: translateY(-400px);
@@ -180,7 +176,6 @@ h1>p {
 }
 
 @keyframes slideDown4 {
-
   /* 4 brik i kolonnen */
   0% {
     transform: translateY(-500px);
@@ -192,7 +187,6 @@ h1>p {
 }
 
 @keyframes slideDown5 {
-
   /* 5 brik i kolonnen */
   0% {
     transform: translateY(-600px);
@@ -211,6 +205,24 @@ h1>p {
   position: relative;
   top: -100px;
   z-index: -10;
+  top: 0px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.winner1Modal,
+.winner2Modal,
+.winner3Modal,
+.winner4Modal {
+  animation-delay: 2s;
+  animation: fadeIn 2s;
 }
 
 .modal {
@@ -255,7 +267,7 @@ h1>p {
 }
 
 .winner1-modal-content {
-  background-color: #FFC107;
+  background-color: #ffc107;
   padding: 20px;
   border-radius: 10px;
   position: absolute;
@@ -397,27 +409,3 @@ video {
 .closeModalButton:hover {
   background-color: #8ED93E;
 }
-
-/* @keyframes wave {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes moveLeftRight {
-
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-
-  50% {
-    transform: translateX(10px);
-  }
-} */
