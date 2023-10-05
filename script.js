@@ -275,7 +275,6 @@ function checkWin(row, col) {
               player4WinsModal();
           }
       }
-      console.log(gameStats);
   }
   //hvis pladen bliver helt fyldt med brikker så ender spillet uafgjort
   if(turnCount === gameArray.length * gameArray[0].length)
@@ -464,5 +463,3 @@ window.addEventListener("click", function (event) {
     closeStatsModal();
   }
 });
-
-//something
